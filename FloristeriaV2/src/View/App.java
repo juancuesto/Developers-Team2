@@ -86,7 +86,7 @@ public class App {
 				System.out.println("introduce color ");
 				color=scn2.nextLine();
 				System.out.println("introduce precio");
-				pvpFlor=scn3.nextDouble();
+				pvpFlor=scn3.nextDouble();scn3.nextLine();
 				IArticulo f1=new Flor(color,pvpFlor);
 				flo.add(f1);
 				break;
@@ -97,13 +97,13 @@ public class App {
 				Scanner scn4=new Scanner(System.in);
 				Scanner scn5=new Scanner(System.in);
 				System.out.println("introduce decoracion en stock");
-				System.out.println("introduce tipo plastico o madera");
+				System.out.println("introduce tipo plastico o madera ");
 				tipo=scn4.nextLine();
-				pvpDecoracion=scn5.nextDouble();
 				System.out.println("introduce precio");
-				pvpDecoracion=scn4.nextDouble();
+				pvpDecoracion=scn5.nextDouble();scn5.nextLine();
 				IArticulo d1=new Decoracion(tipo,pvpDecoracion);
 				flo.add(d1);
+				
 				
 				break;
 			case 5:

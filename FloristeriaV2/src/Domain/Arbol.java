@@ -2,6 +2,11 @@ package Domain;
 
 public class Arbol implements IArticulo {
 	
+	@Override
+	public String toString() {
+		return "Arbol [altura=" + altura + ", pvp=" + pvp + "]";
+	}
+
 	private double altura;
 	private double pvp;
 	
