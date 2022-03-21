@@ -1,6 +1,7 @@
 package Repositorio;
 
 import java.util.ArrayList;
+import java.util.Scanner;
 
 import Domain.IArticulo;
 import Domain.Arbol;
@@ -11,17 +12,14 @@ public class Almacen {
 	
 	ArrayList<IArticulo> floristeria=new ArrayList<IArticulo>();
 	private String nombre;
-	private int stockArboles;
-	private int stockFlores;
-	private int stockDecoracion;
+	private int stockArboles=0;
+	private int stockFlores=0;
+	private int stockDecoracion=0;
 	
-	public Almacen(ArrayList<IArticulo> floristeria, String nombre,int a,int b,int c) {
+	public Almacen(ArrayList<IArticulo> floristeria, String nombre) {
 		super();
 		this.floristeria = floristeria;
-		this.nombre = nombre;
-		stockArboles=a;
-		stockFlores=b;
-		stockDecoracion=c;
+		this.nombre = nombre;	
 	}
 	
 	public void dameStock(ArrayList<IArticulo> floristeria) {
@@ -43,12 +41,21 @@ public class Almacen {
 		System.out.println("Cantidad de arboles: "+cantidadArboles+ "\n"+"Cantidad de flores: "+cantidadFlores+"\n"+"Cantidad decoracion: "+cantidadDecoracion);
 	}
 	
-	public ArrayList<IArticulo> añadirArbol(IArticulo a, ArrayList<IArticulo> flo){
-		if( a instanceof Arbol){
-			stockArboles++;
-			flo.add(a);
-		}
-		return flo;
+	public IArticulo añadirArbol(){
+		int altura;
+		double pvp;
+		IArticulo a;
+		Scanner sc=new Scanner(System.in);
+		
+		System.out.println("introduce arbol en stock");
+		System.out.println("introduce altura arbol");
+		altura=sc.nextInt();
+		System.out.println("introduce precio");
+		pvp=sc.nextDouble();
+		stockArboles++;
+		a=new Arbol(altura,pvp);
+		
+		return a;
 	}
 	public ArrayList<IArticulo>  añadirFlor(IArticulo a,ArrayList<IArticulo> l){
 		if( a instanceof Flor){
@@ -83,6 +90,45 @@ public class Almacen {
 			pvpTotal=pvpTotal+elemento.getPvp();
 		}
 		return pvpTotal;
+	}
+	public Arbol eliminarArbol(ArrayList<IArticulo> flo) {
+		for(int i=0;i<flo.size();i++) {
+			if(flo.get(i) instanceof Arbol) {
+				
+				return (Arbol)flo.get(i);
+			}else {
+				System.out.println("No hay stock suficiente");
+				return null;
+			}
+			
+		}
+		return null;
+	}
+	public Flor eliminarFlor(ArrayList<IArticulo> flo) {
+		for(int i=0;i<flo.size();i++) {
+			if(flo.get(i) instanceof Flor) {
+				
+				return (Flor)flo.get(i);
+			}else {
+				System.out.println("No hay stock suficiente");
+				return null;
+			}
+			
+		}
+		return null;
+	}
+	
+	public Decoracion eliminarDecoracion(ArrayList<IArticulo> flo) {
+		for(int i=0;i<flo.size();i++) {
+			if(flo.get(i) instanceof Decoracion) {
+				return (Decoracion)flo.get(i);
+			}else {
+				System.out.println("No hay stock suficiente");
+				return null;
+			}
+			
+		}
+		return null;
 	}
 
 	

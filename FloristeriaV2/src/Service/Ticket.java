@@ -14,7 +14,7 @@ import Domain.Floristeria;
 
 public class Ticket {
 	
-	ArrayList<IArticulo> lista=new ArrayList<IArticulo>();
+	static ArrayList<IArticulo> lista=new ArrayList<IArticulo>();
 	static ArrayList<IArticulo> historicoVentas=new ArrayList<IArticulo>();
 	static double gananciasTotales;
 	
@@ -46,13 +46,14 @@ public class Ticket {
 		Ticket.gananciasTotales = gananciasTotales;
 	}
 	
-	public void añadirArticulo(IArticulo a,Almacen f,ArrayList<IArticulo> flo) {
+	public static void añadirArticulo(IArticulo a,Almacen f,ArrayList<IArticulo> flo) {
 		int i=f.getStockArboles();
 		int j=f.getStockFlores();
 		int d=f.getStockDecoracion();
 		if((a instanceof Arbol) &&(i>0)){
 			lista.add(a);
 			historicoVentas.add(a);
+			a=f.eliminarArbol(flo);
 			flo.remove(a);
 		}else if((a instanceof Flor) &&(j>0)) {
 			lista.add(a);
@@ -65,10 +66,10 @@ public class Ticket {
 		}
 	}
 	
-	public void imprimirTicket(Ticket t) {
+	public static void imprimirTicket() {
 		double pvpTicket=0;
 		System.out.println("El ticket contiene: ");
-		for(IArticulo elemento: t.lista) {
+		for(IArticulo elemento: lista) {
 			System.out.println(elemento.toString());
 			pvpTicket=pvpTicket+elemento.getPvp();
 		}
